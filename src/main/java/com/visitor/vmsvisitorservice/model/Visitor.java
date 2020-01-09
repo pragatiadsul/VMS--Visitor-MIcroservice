@@ -57,6 +57,8 @@ public class Visitor {
 	
 	private String visitorType;
 	
+	//private String idProofType;
+	
 	@CreationTimestamp
 	private LocalDateTime registrationDateTime;
 
@@ -222,6 +224,18 @@ public class Visitor {
 		this.registrationDateTime = registrationDateTime;
 	}
 
+
+//	public String getIdProofType() {
+//		return idProofType;
+//	}
+//
+//
+//	public void setIdProofType(String idProofType) {
+//		this.idProofType = idProofType;
+//	}
+
+
+	
 
 
 	

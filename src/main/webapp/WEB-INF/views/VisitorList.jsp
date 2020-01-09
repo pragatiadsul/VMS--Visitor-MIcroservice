@@ -34,8 +34,8 @@
 <form:form  class="form-horizontal" >
 <table id="t01" border="2" width="70%" cellpadding="2">
 <tr><th>Id</th><th>name</th><th>email</th>
-<th>mobileNo</th><th>address</th>
-<th>idProof</th><th>contactPersonName</th><th>contactPersonEmail</th>
+<th>mobileNo</th><th>address</th><th>idProofType</th>
+<th>idProof</th><th>visitorType</th> <th>contactPersonName</th><th>contactPersonEmail</th>
 <th>reasonForVisit</th><th>contactPersonMobileNo</th>
 <th>Edit</th><th>Delete</th></tr>  
 
@@ -46,12 +46,15 @@
    <td>${visitor.email}</td>  
    <td>${visitor.mobileNo}</td> 
    <td>${visitor.address}</td>  
+    <td>${visitor.idProofType}</td> 
    <td>${visitor.idProof}</td> 
+    <td>${visitor.visitorType}</td>
+   
    <td>${visitor.contactPersonName}</td>  
    <td>${visitor.contactPersonEmail}</td>  
    <td>${visitor.reasonForVisit}</td>  
    <td>${visitor.contactPersonMobileNo}</td>  
-  
+ 
    
    <td><a href="visitor/editVisitor/${visitor.id}">Edit</a></td>  
                      <td><a href="visitor/deleteVisitor/${visitor.id}">Delete</a></td>  

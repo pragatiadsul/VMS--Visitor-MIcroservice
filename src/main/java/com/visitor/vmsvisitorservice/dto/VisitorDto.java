@@ -15,6 +15,7 @@ public class VisitorDto {
 	private String reasonForVisit;
 	private String contactPersonMobileNo;
 	private String visitorType;
+	private String idProofType;
 
 	private int status;
 
@@ -112,6 +113,14 @@ public class VisitorDto {
 
 	public void setVisitorType(String visitorType) {
 		this.visitorType = visitorType;
+	}
+
+	public String getIdProofType() {
+		return idProofType;
+	}
+
+	public void setIdProofType(String idProofType) {
+		this.idProofType = idProofType;
 	}
 
 }

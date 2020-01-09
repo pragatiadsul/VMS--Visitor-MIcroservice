@@ -42,24 +42,30 @@ public class HomeContoller {
 	{
 		return "index";
 	}
+	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
+	public ModelAndView welcome() {
+		
+		return new ModelAndView("welcome");
+	}
 
 	@Autowired
 	private IVisitorService visitorService;
 
-	@RequestMapping(value = "/visitorRegistration", method = RequestMethod.GET)
+	@RequestMapping(value = "/VisitorRegistration", method = RequestMethod.GET)
 	public ModelAndView newRegistration(ModelMap model) {
 		Visitor visitor = new Visitor();
 		model.addAttribute("visitor", visitor);
 		return new ModelAndView("VisitorRegistration");
 	}
 
-	@PostMapping(value = "/save")
+	@PostMapping(value = "/registerSuccess")
 	public ModelAndView saveRegistration(@Valid VisitorDto visitorDto, BindingResult result, ModelMap model,
 			RedirectAttributes redirectAttributes) {
 
 		visitorService.addVisitor(visitorDto);
-		List<Visitor> list = visitorService.visitorsList();
-		return new ModelAndView("VisitorList", "list", list);
+		//List<Visitor> list = visitorService.visitorsList();
+		//return new ModelAndView("VisitorList", "list", list);
+		return new ModelAndView("registerSuccess");
 
 	}
 
@@ -100,5 +106,16 @@ public class HomeContoller {
 		countries.add("OTHER");
 		return countries;
 	}
+	
+	@PostMapping(value = "/registrationSuccess")
+	public ModelAndView registrationSuccess(@Valid VisitorDto visitorDto, BindingResult result, ModelMap model,
+			RedirectAttributes redirectAttributes) {
+
+		visitorService.addVisitor(visitorDto);
+		//List<Visitor> list = visitorService.visitorsList();
+		return new ModelAndView("registrationSuccess");
+
+	}
+	
 }
 

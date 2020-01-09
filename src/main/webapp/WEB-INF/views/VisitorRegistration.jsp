@@ -21,11 +21,11 @@
  	<h1>Visitor Registration Form</h1>
  	
 	
-	 <form:form action="save" modelAttribute="visitor">
+	 <form:form action="registerSuccess" modelAttribute="visitor">
 
 		<div class="row">
 			<div class="form-group col-md-12">
-				<label class="col-md-3 control-lable" for="name">name</label>
+				<label class="col-md-3 control-lable" for="name">Name</label>
 				<div class="col-md-7">
 					<form:input type="text" path="name" id="name" class="form-control input-sm"/>
 					
@@ -36,7 +36,7 @@
 
 <div class="row">
 			<div class="form-group col-md-12">
-				<label class="col-md-3 control-lable" for="email">email</label>
+				<label class="col-md-3 control-lable" for="email">Email</label>
 				<div class="col-md-7">
 					<form:input type="text" path="email" id="email" class="form-control input-sm"/>
 					
@@ -48,7 +48,7 @@
 		
 		<div class="row">
 			<div class="form-group col-md-12">
-				<label class="col-md-3 control-lable" for="mobileNo">mobileNo</label>
+				<label class="col-md-3 control-lable" for="mobileNo">Mobile No</label>
 				<div class="col-md-7">
 					<form:input type="text" path="mobileNo" id="mobileNo" class="form-control input-sm"/>
 					
@@ -61,7 +61,7 @@
 		
 		<div class="row">
 			<div class="form-group col-md-12">
-				<label class="col-md-3 control-lable" for="address">address</label>
+				<label class="col-md-3 control-lable" for="address">Address</label>
 				<div class="col-md-7">
 					<form:input type="text" path="address" id="address" class="form-control input-sm"/>
 					
@@ -71,7 +71,7 @@
 		
 		<div class="row">
 				<div class="form-group col-md-12">
-					<label class="col-md-3 control-lable"  for="idProofType" >IdProof Type</label>
+					<label class="col-md-3 control-lable"  for="idProofType" >IdProof</label>
 					<div class="col-md-7" >
 						<select name="idProofType"  style="max-width:100%;">
 							<option value="panCard">PAN Card</option>
@@ -86,7 +86,7 @@
 		
 		<div class="row">
 			<div class="form-group col-md-12">
-				<label class="col-md-3 control-lable" for="idProof">idProof</label>
+				<label class="col-md-3 control-lable" for="idProof">IdProof No</label>
 				<div class="col-md-7">
 					<form:input type="text" path="idProof" id="idProof" class="form-control input-sm"/>
 					
@@ -101,7 +101,6 @@
 					<div class="col-md-7" >
 						<select name="visitorType"  style="max-width:100%;">
 							<option value="client">Client</option>
-							<option value="customer">Admin</option>
 							<option value="vender">Vender</option>
 							<option value="vender">Student</option>
 							<option value="other">Other</option>
@@ -112,7 +111,7 @@
 		
 	<div class="row">
 			<div class="form-group col-md-12">
-				<label class="col-md-3 control-lable" for="reasonForVisit">reasonForVisit</label>
+				<label class="col-md-3 control-lable" for="reasonForVisit">Reason For Visit</label>
 				<div class="col-md-7">
 					<form:input type="text" path="reasonForVisit" id="reasonForVisit" class="form-control input-sm"/>
 					
@@ -122,7 +121,7 @@
 		
 		<div class="row">
 			<div class="form-group col-md-12">
-				<label class="col-md-3 control-lable" for="contactPersonName">contactPersonName</label>
+				<label class="col-md-3 control-lable" for="contactPersonName">Contact Person Name</label>
 				<div class="col-md-7">
 					<form:input type="text" path="contactPersonName" id="contactPersonName" class="form-control input-sm"/>
 					
@@ -133,7 +132,7 @@
 		
 		<div class="row">
 			<div class="form-group col-md-12">
-				<label class="col-md-3 control-lable" for="contactPersonEmail">contactPersonEmail</label>
+				<label class="col-md-3 control-lable" for="contactPersonEmail">Contact Person Email</label>
 				<div class="col-md-7">
 					<form:input type="text" path="contactPersonEmail" id="contactPersonEmail" class="form-control input-sm"/>
 					
@@ -143,7 +142,7 @@
 		
 		<div class="row">
 			<div class="form-group col-md-12">
-				<label class="col-md-3 control-lable" for="contactPersonMobileNo">contactPersonMobileNo</label>
+				<label class="col-md-3 control-lable" for="contactPersonMobileNo">Contact Person Mobile No</label>
 				<div class="col-md-7">
 					<form:input type="text" path="contactPersonMobileNo" id="contactPersonMobileNo" class="form-control input-sm"/>
 					

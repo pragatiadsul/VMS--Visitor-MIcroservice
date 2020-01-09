@@ -125,8 +125,7 @@ class MockitoVisitorServiceTest {
 	@Disabled
 	@Test
 	public void getVisitorByIdTest() {
-		when(visitorDao.findById(1)).thenReturn(new Visitor(1, "John", "pune", "John@gmail.com", "ekta", "9898989898",
-				"e@gmail.com", "9656457825", "4654352432", 0, "joining", "student"));
+		when(visitorDao.findById(1)).thenReturn(new Visitor());
 
 		Visitor visitor = visitorService.getByVisitorId(1);
 

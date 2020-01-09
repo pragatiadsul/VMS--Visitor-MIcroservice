@@ -61,6 +61,7 @@ public class VisitorServiceImpl implements IVisitorService {
 		va.setReasonForVisit(visitorDto.getReasonForVisit());
 		va.setVisitorType(visitorDto.getVisitorType());
 		va.setContactPersonMobileNo(visitorDto.getContactPersonMobileNo());
+	//	va.setIdProofType(visitorDto.getIdProofType());
 		visitorRepository.save(va);
 
 	}
