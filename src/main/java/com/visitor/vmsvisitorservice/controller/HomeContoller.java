@@ -1,15 +1,5 @@
 package com.visitor.vmsvisitorservice.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.visitor.vmsvisitorservice.service.IVisitorService;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +33,14 @@ public class HomeContoller {
 	{
 		return "index";
 	}
+
+	/**
+	 * Method used to display Welcome page
+	 * 
+	 * @param
+	 * @return ModelAndView Welcome page
+	 */
+
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public ModelAndView welcome() {
 		
@@ -51,12 +50,20 @@ public class HomeContoller {
 	@Autowired
 	private IVisitorService visitorService;
 
+	/**
+	 * Method used to display visitorRegistration form
+	 * 
+	 * @param Visitor ModelMap
+	 * @return ModelAndView VisitorRegistration page
+	 */
+
 	@RequestMapping(value = "/VisitorRegistration", method = RequestMethod.GET)
 	public ModelAndView newRegistration(ModelMap model) {
 		Visitor visitor = new Visitor();
 		model.addAttribute("visitor", visitor);
 		return new ModelAndView("VisitorRegistration");
 	}
+
 
 	@PostMapping(value = "/registerSuccess")
 	public ModelAndView saveRegistration(@Valid VisitorDto visitorDto, BindingResult result, ModelMap model,

@@ -3,11 +3,8 @@ package com.visitor.vmsvisitorservice.servicetest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -70,33 +67,30 @@ class MockitoVisitorServiceTest {
 
 	}
 
+
 	/**
 	 * Method used to get VisitorsList
 	 */
-/*
-	@Test
-	void testVisitorsList() {
-		List<Visitor> list = new ArrayList<Visitor>();
-//		Visitor visitorOne = new Visitor(1, "John", "pune", "howtodoinjava@gmail.com", "ekta", "9898989898",
-				"e@gmail.com", "9656457825", "4654352432", 0, "joining","sfrsd");
-		Visitor visitorTwo = new Visitor(2, "Alex", "mumbai", "alexk@yahoo.com", "ekta", "9898989898", "e@gmail.com",
-				"9685457825", "34TREB2431", 0, "joining");
-		Visitor visitorThree = new Visitor(3, "Steve", "benglore", "swaugh@gmail.com", "ekta", "9898989898",
-				"e@gmail.com", "9798652541", "4787651432", 0, "joining");
 
-		list.add(visitorOne);
-		list.add(visitorTwo);
-		list.add(visitorThree);
-
-		when(visitorDao.visitorsList()).thenReturn(list);
-
-		// test
-		List<Visitor> visitorList = visitorService.visitorsList();
-
-		assertEquals(3, visitorList.size());
-		verify(visitorDao, times(1)).visitorsList();
-	}
-*/
+	/*
+	 * @Test void testVisitorsList() { List<Visitor> list = new
+	 * ArrayList<Visitor>(); // Visitor visitorOne = new Visitor(1, "John", "pune",
+	 * "howtodoinjava@gmail.com", "ekta", "9898989898", "e@gmail.com", "9656457825",
+	 * "4654352432", 0, "joining","sfrsd"); Visitor visitorTwo = new Visitor(2,
+	 * "Alex", "mumbai", "alexk@yahoo.com", "ekta", "9898989898", "e@gmail.com",
+	 * "9685457825", "34TREB2431", 0, "joining"); Visitor visitorThree = new
+	 * Visitor(3, "Steve", "benglore", "swaugh@gmail.com", "ekta", "9898989898",
+	 * "e@gmail.com", "9798652541", "4787651432", 0, "joining");
+	 * 
+	 * list.add(visitorOne); list.add(visitorTwo); list.add(visitorThree);
+	 * 
+	 * when(visitorDao.visitorsList()).thenReturn(list);
+	 * 
+	 * // test List<Visitor> visitorList = visitorService.visitorsList();
+	 * 
+	 * assertEquals(3, visitorList.size()); verify(visitorDao,
+	 * times(1)).visitorsList(); }
+	 */
 	/**
 	 * Method used to add Visitor
 	 */
@@ -105,7 +99,7 @@ class MockitoVisitorServiceTest {
 	void testAddVisitor() {
 		VisitorDto v1 = new VisitorDto();
 		v1.setName("priyanka");
-		v1.setAddress("wakad,pune");
+		// v1.setAddress("wakad,pune");
 		v1.setContactPersonEmail("Hr@gmail.com");
 		v1.setContactPersonName("kishori");
 		v1.setMobileNo("9342253641");
@@ -130,7 +124,7 @@ class MockitoVisitorServiceTest {
 		Visitor visitor = visitorService.getByVisitorId(1);
 
 		assertEquals("John", visitor.getName());
-		assertEquals("pune", visitor.getAddress());
+		// assertEquals("pune", visitor.getAddress());
 		assertEquals("John@gmail.com", visitor.getEmail());
 		assertEquals("ekta", visitor.getContactPersonName());
 		assertEquals("9898989898", visitor.getContactPersonMobileNo());

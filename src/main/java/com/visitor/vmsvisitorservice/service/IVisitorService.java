@@ -15,8 +15,6 @@ public interface IVisitorService {
 
 	Visitor getByVisitorId(long id);
 
-	void save(@Valid VisitorDto visitorDto);
-
 	String addVisitor(@Valid VisitorDto visitorDto);
 
 	void updateVisitorById(Visitor visitor, long id);
@@ -25,10 +23,8 @@ public interface IVisitorService {
 
 	void updateVisitor(Visitor v);
 
-	//Visitor getStudentById(int id);
+	List<Visitor> searchVisitor(Visitor visitor);
 
-	//Visitor getVisitorById(long id);
-
-	//void update(Visitor visitor);
+	Visitor add(VisitorDto visitorDto);
 
 }

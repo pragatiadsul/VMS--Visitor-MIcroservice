@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.visitor.vmsvisitorservice.VmsVisitorServiceApplication;
 import com.visitor.vmsvisitorservice.dao.IVisitorDao;
 import com.visitor.vmsvisitorservice.dto.VisitorDto;
 import com.visitor.vmsvisitorservice.exception.VisitorNotFoundException;
@@ -36,7 +37,6 @@ public class VisitorServiceImpl implements IVisitorService {
 		if (visitorData == null) {
 			throw new VisitorNotFoundException("");
 		}
-
 		return visitorData;
 
 	}
@@ -48,28 +48,15 @@ public class VisitorServiceImpl implements IVisitorService {
 	}
 
 	@Override
-	public void save(@Valid VisitorDto visitorDto) {
-		Visitor va = new Visitor();
-		va.setAddress(visitorDto.getAddress());
-		va.setContactPersonEmail(visitorDto.getContactPersonEmail());
-		va.setContactPersonName(visitorDto.getContactPersonName());
-		va.setEmail(visitorDto.getEmail());
-		va.setId(visitorDto.getId());
-		va.setIdProof(visitorDto.getIdProof());
-		va.setMobileNo(visitorDto.getMobileNo());
-		va.setName(visitorDto.getName());
-		va.setReasonForVisit(visitorDto.getReasonForVisit());
-		va.setVisitorType(visitorDto.getVisitorType());
-		va.setContactPersonMobileNo(visitorDto.getContactPersonMobileNo());
-	//	va.setIdProofType(visitorDto.getIdProofType());
-		visitorRepository.save(va);
-
-	}
-
-	@Override
 	public String addVisitor(@Valid VisitorDto visitorDto) {
+
+		// TODO apply field level validations here
+		if (!VmsVisitorServiceApplication.arlist.contains(visitorDto.getContactPersonEmail())) {
+			System.err.println("Visitor:Add failed. Invalid contact person email.");
+			throw new RuntimeException("Visitor:Add failed. Invalid contact person email.");
+		}
+
 		Visitor va = new Visitor();
-		va.setAddress(visitorDto.getAddress());
 		va.setContactPersonEmail(visitorDto.getContactPersonEmail());
 		va.setContactPersonName(visitorDto.getContactPersonName());
 		va.setEmail(visitorDto.getEmail());
@@ -80,6 +67,7 @@ public class VisitorServiceImpl implements IVisitorService {
 		va.setReasonForVisit(visitorDto.getReasonForVisit());
 		va.setContactPersonMobileNo(visitorDto.getContactPersonMobileNo());
 		va.setVisitorType(visitorDto.getVisitorType());
+		va.setIdProofType(visitorDto.getIdProofType());
 		visitorRepository.save(va);
 		return "Recored Added successfully";
 	}
@@ -87,30 +75,40 @@ public class VisitorServiceImpl implements IVisitorService {
 	@Override
 	public void updateVisitorById(Visitor visitor, long id) {
 		visitorDao.updateVisitorById(visitor, id);
-
 	}
 
 	@Override
 	public void deleteVisitorById(long id) {
 		visitorDao.deleteVisitorById(id);
-		
 	}
 
 	@Override
 	public void updateVisitor(Visitor v) {
-		// TODO Auto-generated method stub
+
 		visitorDao.updateVisitor(v);
 	}
 
-/*	@Override
-	public Visitor getVisitorById(long id) {
-		return visitorDao.getVisitorById(id);
+	@Override
+	public List<Visitor> searchVisitor(Visitor visitor) {
+
+		return visitorDao.searchVisitor(visitor);
 	}
 
 	@Override
-	public void update(Visitor visitor) {
-		visitorDao.update(visitor);
-		
+	public Visitor add(VisitorDto visitorDto) {
+		Visitor va = new Visitor();
+		va.setContactPersonEmail(visitorDto.getContactPersonEmail());
+		va.setContactPersonName(visitorDto.getContactPersonName());
+		va.setEmail(visitorDto.getEmail());
+		va.setId(visitorDto.getId());
+		va.setIdProof(visitorDto.getIdProof());
+		va.setMobileNo(visitorDto.getMobileNo());
+		va.setName(visitorDto.getName());
+		va.setReasonForVisit(visitorDto.getReasonForVisit());
+		va.setContactPersonMobileNo(visitorDto.getContactPersonMobileNo());
+		va.setVisitorType(visitorDto.getVisitorType());
+		va.setIdProofType(visitorDto.getIdProofType());
+		return visitorRepository.save(va);
 	}
-*/
+
 }

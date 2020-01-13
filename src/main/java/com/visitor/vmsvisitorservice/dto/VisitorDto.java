@@ -6,7 +6,7 @@ public class VisitorDto {
 	private String name;
 	private String email;
 	private String mobileNo;
-	private String address;
+	// private String address;
 
 	private String idProof;
 	private String contactPersonName;
@@ -16,6 +16,7 @@ public class VisitorDto {
 	private String contactPersonMobileNo;
 	private String visitorType;
 	private String idProofType;
+
 
 	private int status;
 
@@ -51,14 +52,11 @@ public class VisitorDto {
 		this.mobileNo = mobileNo;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
+	/*
+	 * public String getAddress() { return address; }
+	 * 
+	 * public void setAddress(String address) { this.address = address; }
+	 */
 	public String getIdProof() {
 		return idProof;
 	}

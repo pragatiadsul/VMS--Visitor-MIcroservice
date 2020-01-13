@@ -2,26 +2,17 @@ package com.visitor.vmsvisitorservice.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 //import com.visitor.vmsvisitorservice.dao.IVisitorDao;
 import com.visitor.vmsvisitorservice.dto.VisitorDto;
@@ -34,9 +25,10 @@ import com.visitor.vmsvisitorservice.service.IVisitorService;
 public class VisitorController {
 
 	private static final Logger logger = LogManager.getLogger(VisitorController.class);
+
 	@Autowired
 	private IVisitorService visitorService;
-	// private Object visitor;
+
 
 	/**
 	 * Method used for Visitor registration
@@ -55,8 +47,7 @@ public class VisitorController {
 	 * @param No any parameter provided
 	 * @return List of registered Visitors
 	 */
-
-	@GetMapping("/visitorslist")
+	@GetMapping("/visitorsList")
 	public List<Visitor> visitorsList() {
 		return visitorService.visitorsList();
 	}
@@ -66,13 +57,14 @@ public class VisitorController {
 	 * 
 	 * @param Id
 	 * @return Visitor object
+	 * @throws Visitor Not Found Exception
 	 */
 
-	@GetMapping("/visitorslist/{id}")
+	@GetMapping("/visitorsList/{id}")
 	public Visitor getByVisitorId(@PathVariable long id) {
 
 		logger.info("get visitors list by id ==" + id);
-		// return visitorService.getByVisitorId(id);
+
 		try {
 			Visitor userData = visitorService.getByVisitorId(id);
 			return userData;
@@ -102,23 +94,16 @@ public class VisitorController {
 	 * @param visitor object
 	 * @return Visitor object
 	 */
-
 	@GetMapping("/updateVisitorById/{id}")
 	public void updateVisitorById(@RequestBody Visitor visitor, @PathVariable long id) {
 		visitorService.updateVisitorById(visitor, id);
 	}
 
-	@GetMapping("/welcome")
-	public ModelAndView welcome() {
-		return new ModelAndView("welcome");
-	}
-
 	
 	/**
-	 * Method used to delete Visitor by id using criteria builder
+	 * Method used to delete Visitor by Id
 	 * 
-	 * @param visitor object
-	 *
+	 * @param visitor ID
 	 */
 	@GetMapping("/deleteVisitorById/{id}")
 	public void deleteVisitorById(@PathVariable long id)
@@ -128,97 +113,31 @@ public class VisitorController {
 	}
 	
 	/**
-	 * Method used to display enroll form
+	 * Method used to search the Record by using any Attribute
 	 * 
-	 * @param Visitor ModelMap
-	 * @return ModelAndView
+	 * @param Visitor Object
+	 * @return resultList
 	 */
-/*	@RequestMapping(value = "/enroll", method = RequestMethod.GET)
-	public ModelAndView newRegistration(ModelMap model) {
-		Visitor visitor = new Visitor();
-		model.addAttribute("visitor", visitor);
-		return new ModelAndView("enroll");
-	}
-*/
-	/**
-	 * Method used to save Visitor
-	 * 
-	 * @param Visitorobject
-	 * @return ModelAndView
-	 */
-/*	@PostMapping(value = "/save")
-	public ModelAndView saveRegistration(@Valid VisitorDto visitorDto, BindingResult result, ModelMap model,
-			RedirectAttributes redirectAttributes) {
 
-		visitorService.addVisitor(visitorDto);
-		return new ModelAndView("viewstudents");
-	}
-*/
-	/**
-	 * Method used to get registered Visitors list
-	 * 
-	 * @param No any parameter provided
-	 * @return List of registered Visitors
-	 */
-	/* @GetMapping("/viewstudents")
-	public ModelAndView viewstudents() {
-		List<Visitor> list = visitorService.visitorsList();
-		return new ModelAndView("viewstudents", "list", list);
-	}
-*/
+	@PostMapping("/search")
+	public List<Visitor> searchVisitor(@RequestBody Visitor visitor) {
 
-	/**
-	 * Method used to display visitorRegistration form
-	 * 
-	 * @param Visitor ModelMap
-	 * @return ModelAndView VisitorRegistration page
-	 */
-	
-	@RequestMapping(value = "/visitorRegistration", method = RequestMethod.GET)
-	public ModelAndView newRegistration(ModelMap model) {
-		Visitor visitor = new Visitor();
-		model.addAttribute("visitor", visitor);
-		return new ModelAndView("VisitorRegistration");
-	}
-
-	/**
-	 * Method used to save Visitor
-	 * 
-	 * @param Visitorobject
-	 * @return ModelAndView VisitorList
-	 */
-	@PostMapping(value = "/save")
-	public ModelAndView saveRegistration(@Valid VisitorDto visitorDto, BindingResult result, ModelMap model,
-			RedirectAttributes redirectAttributes) {
-
-		visitorService.addVisitor(visitorDto);
-		List<Visitor> list = visitorService.visitorsList();
-		return new ModelAndView("VisitorList", "list", list);
+		return visitorService.searchVisitor(visitor);
 	}
 	
 	
-	@RequestMapping(value = "/deleteVisitor/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteVisitor(@PathVariable long id) {
-		visitorService.deleteVisitorById(id);
-
-		List<Visitor> list = visitorService.visitorsList();
-		return new ModelAndView("VisitorList", "list", list);
+	/**
+	 * Method used for Visitor Registration
+	 * 
+	 * @param Visitor Object
+	 * @return status Visitor Object
+	 */
+	@PostMapping("/add")
+	public Visitor add(@RequestBody VisitorDto visitorDto) {
+		return visitorService.add(visitorDto);
 	}
 
-	@RequestMapping(value = "/editVisitor/{id}")
-	public ModelAndView edit(@PathVariable long id, ModelMap model) {
-		Visitor visitor = visitorService.getByVisitorId(id);
-		model.addAttribute("visitor", visitor);
-		return new ModelAndView("editVisitor");
 
-	}
 
-	@RequestMapping(value = "editVisitor/editsave")
-	public ModelAndView editsave( @ModelAttribute("visitor") Visitor v) {
-		 visitorService.updateVisitor(v);
-
-		List<Visitor> list = visitorService.visitorsList();
-		return new ModelAndView("VisitorList", "list", list);
-	}
 
 }

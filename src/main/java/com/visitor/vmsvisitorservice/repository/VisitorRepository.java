@@ -11,5 +11,4 @@ public interface VisitorRepository extends JpaRepository<Visitor, Long> {
 
 	void save(VisitorDto v1);
 
-	//void save(VisitorDto v1);
 }

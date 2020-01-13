@@ -18,8 +18,7 @@ public interface IVisitorDao {
 
 	void updateVisitor(Visitor v);
 
-	//Visitor getVisitorById(long id);
+	List<Visitor> searchVisitor(Visitor visitor);
 
-	//void update(Visitor visitor);
 
 }
